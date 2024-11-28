@@ -10,7 +10,7 @@ on:
 env:
   IMAGE_NAME: hbck-dam
   IMAGE_SLUG: latest
-  DOCKER_HUB_USERNAME: mauriceconrad
+  DOCKER_HUB_USERNAME: elyaconrad
 
 jobs:
   dockerize:
