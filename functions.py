@@ -11,6 +11,8 @@ from utils import inference_logger
 from langchain.tools import tool
 from langchain_core.utils.function_calling import convert_to_openai_tool
 
+# from typing import Union
+
 @tool
 def code_interpreter(code_markdown: str) -> dict | str:
     """

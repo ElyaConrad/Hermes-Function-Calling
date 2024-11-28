@@ -29,29 +29,36 @@
 
 # CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
-
-FROM ubuntu:20.04
+# RUN apt-get update -y && apt-get install -y \
+#     python3.10 \
+#     python3.10-dev \
+#     python3-pip \
+#     build-essential \
+#     wget \
+#     curl \
+#     git \
+#     python3-dev \
+#     build-essential \
+#     libopenblas-dev \
+#     libssl-dev \
+#     libcurl4-openssl-dev \
+#     cmake \
+#     && rm -rf /var/lib/apt/lists/*
+FROM python:3.10-slim
 ENV DEBIAN_FRONTEND=noninteractive 
-RUN apt-get update -y && apt-get install -y \
-    python3.9 \
-    python3.9-dev \
-    python3-pip \
-    build-essential \
-    wget \
+RUN apt-get update && apt-get install -y \
     curl \
-    git \
-    python3-dev \
     build-essential \
+    python3-dev \
     libopenblas-dev \
-    libssl-dev \
-    libcurl4-openssl-dev \
-    cmake \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 COPY . .
-# RUN python -m venv /opt/venv
-# ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install -r requirements.txt
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# RUN python -m venv /opt/venv
+# ENV PATH="/opt/venv/bin:$PATH"
 
 
 # Use an official Python runtime as a parent image

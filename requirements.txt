@@ -6,11 +6,11 @@ langchain>=0.1.9
 pydantic>=2.0
 jsonschema>=4.21.1
 yfinance>=0.2.36
-pandas>=2.2.0
 ninja>=1.11.1
-flash-attn>=2.5.5
 protobuf>=3.20
 sentencepiece
 art
 uvicorn
 fastapi
+pandas>=2.2.0
+#flash-attn==0.2.4
