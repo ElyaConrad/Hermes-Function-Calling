@@ -45,7 +45,8 @@
 #     cmake \
 #     && rm -rf /var/lib/apt/lists/*
 FROM python:3.10-slim
-ENV DEBIAN_FRONTEND=noninteractive 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV CUDA_HOME=/usr/local/cuda
 RUN apt-get update && apt-get install -y \
     curl \
     build-essential \
@@ -54,11 +55,16 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 COPY . .
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+#RUN pip install packaging
+RUN pip install numpy==1.21.2
+RUN pip install torch==2.1.2
 RUN pip install -r requirements.txt
+#RUN pip install git+https://github.com/HazyResearch/flash-attention.git
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
-# RUN python -m venv /opt/venv
-# ENV PATH="/opt/venv/bin:$PATH"
+
 
 
 # Use an official Python runtime as a parent image
