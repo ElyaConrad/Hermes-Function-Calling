@@ -1,16 +1,41 @@
-FROM python:3.9-slim
+# FROM python:3.9-slim
 
-# Arbeitsverzeichnis erstellen
-WORKDIR /app
+# # Arbeitsverzeichnis erstellen
+# WORKDIR /app
 
-# Systemabhängigkeiten installieren
+# # Systemabhängigkeiten installieren
+# RUN apt-get update && apt-get install -y \
+#     build-essential \
+#     wget \
+#     curl \
+#     && rm -rf /var/lib/apt/lists/*
+
+# RUN apt-get update && apt-get install -y \
+#     git \
+#     python3-dev \
+#     build-essential \
+#     libopenblas-dev \
+#     libssl-dev \
+#     libcurl4-openssl-dev \
+#     cmake \
+#     && rm -rf /var/lib/apt/lists/*
+
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# COPY . .
+
+# EXPOSE 8000
+
+# CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+
+
+FROM ubuntu:20.04
+RUN apt-get update && apt-get install -y python3.9 python3.9-dev python3-pip
 RUN apt-get update && apt-get install -y \
     build-essential \
     wget \
     curl \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
     git \
     python3-dev \
     build-essential \
@@ -19,24 +44,11 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     cmake \
     && rm -rf /var/lib/apt/lists/*
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
 COPY . .
-
-EXPOSE 8000
-
+RUN python3.9 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip install -r requirements.txt
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
-
-
-# FROM ubuntu:20.04
-# RUN apt-get update && apt-get install -y python3.9 python3.9-dev python3-pip
-# COPY . .
-# RUN python3.9 -m venv /opt/venv
-# ENV PATH="/opt/venv/bin:$PATH"
-# RUN pip install -r requirements.txt
-# CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
 
 # Use an official Python runtime as a parent image
