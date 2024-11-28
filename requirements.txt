@@ -1,18 +1,16 @@
-torch==2.1.2                # Neueste stabile Version
-transformers>=4.38.1        # Mindestens 4.38.1 oder neuer
-bitsandbytes>=0.41.1        # Mindestens 0.41.1 oder neuer
-accelerate>=0.22.0          # Aktualisiert für bessere HuggingFace-Kompatibilität
-langchain>=0.1.9            # Beibehaltung der älteren Version, falls API-Inkompatibilität besteht
-pydantic>=2.0               # Aktualisiert für FastAPI-Kompatibilität
-jsonschema>=4.21.1          # Kompatibel mit neueren APIs
-yfinance>=0.2.36            # Für Finanzdatenanfragen
-pandas>=2.2.0               # Neueste stabile Version für Datenanalyse
-ninja>=1.11.1               # Build-System für torch-Daten
-flash-attn>=2.5.5           # GPU-Optimierungen für Modelle
-protobuf>=3.20              # Protobuf-Unterstützung
-sentencepiece               # Tokenizer für bestimmte Modelle (z. B. T5, BERT)
-art                         # ASCII-Art für UI-Dekoration
-
-# Zusätzliche Anforderungen
-uvicorn                     # Für FastAPI-Server
-fastapi                     # Webframework
+torch==2.1.2
+transformers>=4.38.1
+bitsandbytes>=0.41.1
+accelerate>=0.22.0
+langchain>=0.1.9
+pydantic>=2.0
+jsonschema>=4.21.1
+yfinance>=0.2.36
+pandas>=2.2.0
+ninja>=1.11.1
+flash-attn>=2.5.5
+protobuf>=3.20
+sentencepiece
+art
+uvicorn
+fastapi
