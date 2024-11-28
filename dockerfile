@@ -48,8 +48,8 @@ RUN apt-get update -y && apt-get install -y \
     cmake \
     && rm -rf /var/lib/apt/lists/*
 COPY . .
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+# RUN python -m venv /opt/venv
+# ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install -r requirements.txt
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
