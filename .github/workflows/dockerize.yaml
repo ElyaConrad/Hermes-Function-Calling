@@ -5,7 +5,7 @@ name: Docker build, push & rollout (production)
 
 on:
   push:
-    branches: [main]
+    branches: []
 
 env:
   IMAGE_NAME: hbck-dam
